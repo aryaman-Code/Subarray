@@ -1,0 +1,37 @@
+static int subarrayXor(int a[],int n,int k)
+    {
+        HashMap<Integer,Integer> h=new HashMap<>();
+        int xori=0;int ans=0;
+        for(int i=0;i<n;i++)
+        {
+            xori=xori^a[i];
+            if(xori==k)
+                ans++;
+            int lambda=xori^k;  // lambda is y
+            if(h.containsKey(lambda))
+              ans+=h.get(lambda);
+
+            if(h.containsKey(xori))
+                h.put(xori, h.get(xori) + 1);
+            else
+                h.put(xori,1);
+            }
+
+        return ans;
+    }
+    
+    TIME COMPLEXITY-O(NlogN)
+    SPACE COMPLEXITY-O(N)
+    
+    
+    public static void main(String args[])
+    {
+
+        int[] arr = { 4, 2, 2, 6, 4 };
+        int n = arr.length;
+        int m = 6;
+
+        System.out.println("Number of subarrays"
+                + " having given XOR is "
+                + subarrayXor(arr, n, m));
+    }
